@@ -6,7 +6,7 @@ resource "azurerm_resource_group" "core" {
 
 resource "azurerm_public_ip" "vpnGatewayPublicIp" {
    name = "vpnGatewayPublicIp"
-   resource_group_name = "${azurerm_resource_group.core.name}"
+   resource_group_name = azurerm_resource_group.core.name
    allocation_method = "Dynamic"
    location = azurerm_resource_group.core.location
 }
@@ -14,7 +14,7 @@ resource "azurerm_public_ip" "vpnGatewayPublicIp" {
 resource "azurerm_virtual_network" "core" {
    name = "core"
    location = azurerm_resource_group.core.location
-   resource_group_name = "${azurerm_resource_group.core.name}"
+   resource_group_name = azurerm_resource_group.core.name
    address_space = ["10.0.0.0/16"]
    dns_servers = ["1.1.1.1", "1.0.0.1"]
 }
